@@ -3,11 +3,15 @@ package me.hyeonkyo.todo.domain.todo.repository;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import me.hyeonkyo.todo.domain.model.BaseTimeEntity;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+//@DynamicInsert
+@ToString
 @Getter
 @NoArgsConstructor
 @Entity
@@ -36,6 +40,11 @@ public class TodoList extends BaseTimeEntity {
         this.content = content;
         this.isCompleted = isCompleted;
         this.targetDate = targetDate;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        this.isCompleted = this.isCompleted == null ? false : this.isCompleted;
     }
 
     public void update(String content, Boolean isCompleted, LocalDateTime targetDate) {

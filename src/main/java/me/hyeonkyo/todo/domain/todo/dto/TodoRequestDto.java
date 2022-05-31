@@ -13,9 +13,9 @@ public class TodoRequestDto {
 
     public TodoList toEntity() {
         return TodoList.builder()
-                .content(this.content)
-                .isCompleted(this.isCompleted)
-                .targetDate(this.targetDate)
+                .content(content)
+                .isCompleted(isCompleted)
+                .targetDate(targetDate)
                 .build();
     }
 }

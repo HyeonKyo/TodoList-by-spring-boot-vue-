@@ -1,6 +1,7 @@
 package me.hyeonkyo.todo.domain.todo.repository;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,12 @@ class TodoListRepositoryTest {
     @Autowired
     private TodoListRepository todoListRepository;
 
+    //JPA의 CRUD테스트, save, findById, findAll 등등..
+
     @AfterEach
-    void cleanUp() {
+    void tearDown() {
         todoListRepository.deleteAll();
     }
-    //JPA의 CRUD테스트, save, findById, findAll 등등..
 
     @Test
     void save테스트() throws Exception {
@@ -35,6 +37,7 @@ class TodoListRepositoryTest {
         TodoList todo = list.get(0);
         assertNotNull(todo);
         assertThat(todo.getContent()).isEqualTo("Hello");
+        assertThat(todo.getIsCompleted()).isFalse();
         assertThat(todo.getCompletedDate()).isNull();
     }
 
@@ -59,4 +62,18 @@ class TodoListRepositoryTest {
         assertThat(todoList2.getTargetDate()).isEqualTo(targetDate);
     }
 
+    @Test
+    void Auditing_생성_테스트() {
+        LocalDateTime current = LocalDateTime.now();
+
+        todoListRepository.save(TodoList.builder()
+                .content("data")
+                .build());
+
+        List<TodoList> list = todoListRepository.findAll();
+        TodoList todo = list.get(0);
+
+        assertThat(todo.getCreatedDate()).isAfter(current);
+        assertThat(todo.getModifiedDate()).isAfter(current);
+    }
 }
