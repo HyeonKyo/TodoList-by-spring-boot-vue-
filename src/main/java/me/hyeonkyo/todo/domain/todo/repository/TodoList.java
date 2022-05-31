@@ -25,7 +25,7 @@ public class TodoList extends BaseTimeEntity {
     @Column(length = 300, nullable = false)
     private String content;
 
-    @Column(columnDefinition = "boolean default false", nullable = false)
+    @Column(nullable = false)
     private Boolean isCompleted;
 
     private LocalDateTime targetDate;
@@ -48,8 +48,8 @@ public class TodoList extends BaseTimeEntity {
     }
 
     public void update(String content, Boolean isCompleted, LocalDateTime targetDate) {
-        this.content = content;
-        this.isCompleted = isCompleted;
+        this.content = (content == null || content.isEmpty()) ? this.content : content;
+        this.isCompleted = isCompleted == null ? this.isCompleted : isCompleted;
         this.targetDate = targetDate;
     }
 }

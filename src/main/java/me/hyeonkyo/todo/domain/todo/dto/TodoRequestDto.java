@@ -1,10 +1,12 @@
 package me.hyeonkyo.todo.domain.todo.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import me.hyeonkyo.todo.domain.todo.repository.TodoList;
 
 import java.time.LocalDateTime;
 
+@Builder
 @Getter
 public class TodoRequestDto {
     private String content;
