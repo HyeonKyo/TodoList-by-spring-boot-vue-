@@ -8,6 +8,7 @@ import me.hyeonkyo.todo.domain.model.BaseTimeEntity;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 //@DynamicInsert
@@ -28,7 +29,7 @@ public class TodoList extends BaseTimeEntity {
     @Column(nullable = false)
     private Boolean isCompleted;
 
-    private LocalDateTime targetDate;
+    private LocalDate targetDate;
 
     private LocalDateTime completedDate;
 
@@ -36,7 +37,7 @@ public class TodoList extends BaseTimeEntity {
 //    private String userName;
 
     @Builder
-    public TodoList(String content, Boolean isCompleted, LocalDateTime targetDate) {
+    public TodoList(String content, Boolean isCompleted, LocalDate targetDate) {
         this.content = content;
         this.isCompleted = isCompleted;
         this.targetDate = targetDate;
@@ -47,7 +48,7 @@ public class TodoList extends BaseTimeEntity {
         this.isCompleted = this.isCompleted == null ? false : this.isCompleted;
     }
 
-    public void update(String content, Boolean isCompleted, LocalDateTime targetDate) {
+    public void update(String content, Boolean isCompleted, LocalDate targetDate) {
         this.content = (content == null || content.isEmpty()) ? this.content : content;
         this.isCompleted = isCompleted == null ? this.isCompleted : isCompleted;
         this.targetDate = targetDate;

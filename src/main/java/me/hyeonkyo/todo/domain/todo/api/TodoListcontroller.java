@@ -24,7 +24,6 @@ public class TodoListcontroller {
 
     @PostMapping
     public ResponseEntity<?> save(@RequestBody TodoRequestDto dto) {
-        System.out.println("post요청 dto: " + dto.toString());
         Long saveId = todoListService.save(dto);
         return ResponseEntity.ok(saveId);
     }

@@ -9,7 +9,7 @@
     <b-col cols="2">
       <div>
         <b-form-datepicker
-          id="datepicker-placeholder"
+          v-model="targetDate"
           placeholder="목표 날짜"
           locale="kor"
         ></b-form-datepicker>
@@ -33,16 +33,16 @@ export default {
   data() {
     return {
       content: "",
+      targetDate: "",
     };
   },
   methods: {
     ...mapActions(todoStore, ["saveTodo"]),
     saveTodoData() {
       this.saveTodo({
-        id: "",
         content: this.content,
         isCompleted: false,
-        targetDate: "", //입력으로 받아서 채워주기
+        targetDate: this.targetDate,
       });
     },
   },

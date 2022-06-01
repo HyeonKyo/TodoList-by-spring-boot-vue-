@@ -32,13 +32,9 @@ const todoStore = {
         });
     },
     async saveTodo({ commit }, data) {
-      //   let data = {
-      //     content,
-      //     isCompleted,
-      //     targetDate,
-      //   };
       await save(data)
-        .then(() => {
+        .then((res) => {
+          data.id = res.data;
           commit("ADD_TODO_DATA", data);
         })
         .catch((error) => {
