@@ -1,34 +1,34 @@
-import {} from "@/api/index.js";
+import { findAll } from "@/api/todo.js";
 
-const memberStore = {
+const todoStore = {
   namespaced: true,
   state: {
     todoList: [],
   },
   getters: {
-    getTodoList: function (state) {
-      return state.todoList;
+    activeTodoList: (state) => {
+      return state.todoList.filter((item) => item.isCompleted == false);
+    },
+    doneTodoList: (state) => {
+      return state.todoList.filter((item) => item.isCompleted == true);
     },
   },
   mutations: {
-    SET_Todo_List: (state, list) => {
+    SET_TODO_LIST: (state, list) => {
       state.todoList = list;
     },
   },
   actions: {
-    async memberLogout({ commit }) {
-      await logout(
-        () => {
-          commit("INIT_USER_STATE");
-        },
-        () => {
-          alert("로그아웃 실패");
-          // eslint-disable-next-line
-        }
-      );
+    async findTodoListAll({ commit }) {
+      await findAll()
+        .then((res) => {
+          commit("SET_TODO_LIST", res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
-  methods: {},
 };
 
 export default todoStore;

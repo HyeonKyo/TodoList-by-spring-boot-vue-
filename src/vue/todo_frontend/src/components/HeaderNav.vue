@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  namespace: true,
+  namespaced: true,
 };
 </script>
 

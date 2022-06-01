@@ -1,9 +1,13 @@
+import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 
-import todoStore from "@/store/todoStore";
+import todoStore from "@/store/todoStore.js";
+
+Vue.use(Vuex);
 
 const store = new Vuex.Store({
+  namespaced: true,
   modules: {
     todoStore,
   },

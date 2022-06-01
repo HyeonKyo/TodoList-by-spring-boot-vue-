@@ -22,8 +22,6 @@
 
 <script>
 export default {
-  namespace: true,
-  components: {},
   data() {
     return {
       text: "",

@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-row v-if="list.length == 0">
+    <b-row v-if="!list || list.length <= 0">
       <h3>할 일이 없습니다...</h3>
     </b-row>
     <b-container v-else>
@@ -13,20 +13,13 @@
 
 <script>
 import TodoListItem from "@/components/todo/TodoListItem.vue";
-// import todoStore from "@/store/todoStore";
 
 export default {
-  namespace: true,
   components: {
     TodoListItem,
   },
-  data() {
-    return {
-      list: [],
-    };
-  },
-  mounted() {
-    //   todoStore.actions
+  props: {
+    list: Array,
   },
 };
 </script>

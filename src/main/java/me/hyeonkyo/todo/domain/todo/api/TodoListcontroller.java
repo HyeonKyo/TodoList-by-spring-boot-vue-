@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import me.hyeonkyo.todo.domain.todo.dto.TodoListResponseDto;
 import me.hyeonkyo.todo.domain.todo.dto.TodoRequestDto;
 import me.hyeonkyo.todo.domain.todo.service.TodoListService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
