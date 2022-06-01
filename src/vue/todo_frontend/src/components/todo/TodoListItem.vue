@@ -1,18 +1,22 @@
 <template>
-  <b-card>
-    <blockquote class="blockquote mb-0">
-      <p>
-        {{ content }}
-      </p>
-    </blockquote>
+  <b-card class="mt-1">
+    <b-row>
+      {{ content }}
+    </b-row>
   </b-card>
 </template>
 
 <script>
 export default {
   props: {
-    item: {
-      content: String,
+    content: String,
+    id: [Number, String],
+    isCompleted: Boolean,
+    targetDate: String,
+  },
+  computed: {
+    isChecked() {
+      return this.isCompleted;
     },
   },
 };

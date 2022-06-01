@@ -10,3 +10,7 @@ const api = apiInstance();
 export async function findAll() {
   return await api.get("/api/todo");
 }
+
+export async function save(todo) {
+  return await api.post("/api/todo", todo);
+}

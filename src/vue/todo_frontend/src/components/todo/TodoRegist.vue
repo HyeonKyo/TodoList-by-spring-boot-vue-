@@ -2,7 +2,7 @@
   <b-row>
     <b-col cols="7">
       <b-form-input
-        v-model="text"
+        v-model="content"
         placeholder="할 일을 등록하세요."
       ></b-form-input
     ></b-col>
@@ -16,16 +16,35 @@
       </div>
     </b-col>
     <!-- 목표일, 등록버튼 -->
-    <b-col><b-button variant="outline-primary">등록</b-button></b-col>
+    <b-col
+      ><b-button variant="outline-primary" @click="saveTodoData"
+        >등록</b-button
+      ></b-col
+    >
   </b-row>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
+const todoStore = "todoStore";
+
 export default {
   data() {
     return {
-      text: "",
+      content: "",
     };
+  },
+  methods: {
+    ...mapActions(todoStore, ["saveTodo"]),
+    saveTodoData() {
+      this.saveTodo({
+        id: "",
+        content: this.content,
+        isCompleted: false,
+        targetDate: "", //입력으로 받아서 채워주기
+      });
+    },
   },
 };
 </script>
