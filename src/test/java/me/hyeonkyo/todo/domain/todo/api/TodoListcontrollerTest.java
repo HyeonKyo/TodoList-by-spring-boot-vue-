@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -79,7 +80,7 @@ class TodoListcontrollerTest {
     void POST_save테스트() throws Exception {
         TodoRequestDto dto = TodoRequestDto.builder()
                 .content("data1")
-                .targetDate(LocalDateTime.of(2022, 6, 2, 14, 0))
+                .targetDate(LocalDate.of(2022, 6, 2))
                 .build();
 
         mockMvc.perform(post(url)
@@ -93,13 +94,13 @@ class TodoListcontrollerTest {
     void PUT_update테스트() throws Exception {
         TodoRequestDto dto = TodoRequestDto.builder()
                 .content("old data")
-                .targetDate(LocalDateTime.of(2022, 6, 2, 14, 0))
+                .targetDate(LocalDate.of(2022, 6, 2))
                 .build();
         Long id = repository.save(dto.toEntity()).getId();
 
         url += "/" + id;
         System.out.println("==== url: " + url +" =====");
-        LocalDateTime updateDate = LocalDateTime.of(2023, 6, 2, 14, 0);
+        LocalDate updateDate = LocalDate.of(2023, 6, 2);
         TodoRequestDto updateDto = TodoRequestDto.builder()
                 .content("new data")
                 .isCompleted(true)
@@ -123,7 +124,7 @@ class TodoListcontrollerTest {
     void DELETE_delete테스트() throws Exception {
         TodoRequestDto dto = TodoRequestDto.builder()
                 .content("delete data")
-                .targetDate(LocalDateTime.of(2022, 6, 2, 14, 0))
+                .targetDate(LocalDate.of(2022, 6, 10))
                 .build();
         Long id = repository.save(dto.toEntity()).getId();
 

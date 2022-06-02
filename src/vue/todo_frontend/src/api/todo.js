@@ -14,3 +14,7 @@ export async function findAll() {
 export async function save(todo) {
   return await api.post("/api/todo", todo);
 }
+
+export async function modify(id, todo) {
+  return await api.put(`/api/todo/${id}`, todo);
+}

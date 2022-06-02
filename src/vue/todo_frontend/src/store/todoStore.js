@@ -1,4 +1,4 @@
-import { findAll, save } from "@/api/todo.js";
+import { findAll, save, modify } from "@/api/todo.js";
 
 const todoStore = {
   namespaced: true,
@@ -36,6 +36,18 @@ const todoStore = {
         .then((res) => {
           data.id = res.data;
           commit("ADD_TODO_DATA", data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    async changeTodo(context, data) {
+      console.log("데이터 확인");
+      console.log(data.id);
+      console.log(data);
+      await modify(data.id, data)
+        .then(() => {
+          context.dispatch("findTodoListAll");
         })
         .catch((error) => {
           console.log(error);

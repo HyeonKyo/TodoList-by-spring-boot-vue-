@@ -6,6 +6,7 @@ import me.hyeonkyo.todo.domain.todo.dto.TodoRequestDto;
 import me.hyeonkyo.todo.domain.todo.repository.TodoList;
 import me.hyeonkyo.todo.domain.todo.repository.TodoListRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -25,11 +26,13 @@ public class TodoListServiceImpl implements TodoListService {
     }
 
     @Override
+    @Transactional
     public Long save(TodoRequestDto dto) {
         return todoListRepository.save(dto.toEntity()).getId();
     }
 
     @Override
+    @Transactional
     public Long update(Long id, TodoRequestDto dto) {
         TodoList todo = todoListRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException());
@@ -39,6 +42,7 @@ public class TodoListServiceImpl implements TodoListService {
     }
 
     @Override
+    @Transactional
     public Long delete(Long id) {
         TodoList todo = todoListRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException());

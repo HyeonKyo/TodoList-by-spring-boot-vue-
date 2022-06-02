@@ -5,7 +5,7 @@ function apiInstance() {
   const instance = axios.create({
     baseURL: process.env.VUE_APP_SERVER_URL,
     headers: {
-      "Content-type": "application/json",
+      "Content-Type": "application/json",
     },
   });
   return instance;
