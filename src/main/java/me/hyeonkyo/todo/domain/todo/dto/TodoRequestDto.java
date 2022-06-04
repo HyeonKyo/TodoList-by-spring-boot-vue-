@@ -20,6 +20,13 @@ public class TodoRequestDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     private LocalDate targetDate;
 
+    @Builder
+    public TodoRequestDto(String content, Boolean isCompleted, LocalDate targetDate) {
+        this.content = content;
+        this.isCompleted = isCompleted;
+        this.targetDate = targetDate;
+    }
+
     public TodoList toEntity() {
         return TodoList.builder()
                 .content(content)

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -43,7 +44,7 @@ class TodoListRepositoryTest {
 
     @Test
     void findAll테스트() throws Exception {
-        LocalDateTime targetDate = LocalDateTime.now();
+        LocalDate targetDate = LocalDate.now();
 
         todoListRepository.save(TodoList.builder()
                 .content("data1")
@@ -64,7 +65,7 @@ class TodoListRepositoryTest {
 
     @Test
     void Auditing_생성_테스트() {
-        LocalDateTime current = LocalDateTime.now();
+        LocalDateTime current = LocalDateTime.of(2021,06,04,00,00,00);
 
         todoListRepository.save(TodoList.builder()
                 .content("data")
