@@ -1,11 +1,10 @@
 package me.hyeonkyo.todo.domain.todo.repository;
 
+import me.hyeonkyo.todo.domain.model.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import me.hyeonkyo.todo.domain.model.BaseTimeEntity;
-import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.time.LocalDate;

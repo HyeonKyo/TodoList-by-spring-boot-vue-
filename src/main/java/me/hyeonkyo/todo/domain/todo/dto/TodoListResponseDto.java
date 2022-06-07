@@ -1,8 +1,8 @@
 package me.hyeonkyo.todo.domain.todo.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
 import me.hyeonkyo.todo.domain.todo.repository.TodoList;
+import lombok.Data;
 
 import java.time.LocalDate;
 

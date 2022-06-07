@@ -1,15 +1,13 @@
 package me.hyeonkyo.todo.domain.todo.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import me.hyeonkyo.todo.domain.todo.repository.TodoList;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import me.hyeonkyo.todo.domain.todo.repository.TodoList;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @ToString
 @NoArgsConstructor
